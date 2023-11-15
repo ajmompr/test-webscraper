@@ -112,9 +112,9 @@ end
 # Web Scraping Gems - Static Pages
 gem "nokogiri"
 gem "httparty", "~> 0.21.0"
+gem "kimurai"
 
 # Additional gems that are pre-loaded with standard Ruby library:
 # open-uri
 # net/http
 # csv
-
