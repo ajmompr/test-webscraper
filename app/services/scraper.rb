@@ -1,4 +1,4 @@
-## Using the net/http method
+# # Using the net/http method
 # require "open-uri"
 # require "net/http"
 
@@ -13,12 +13,18 @@
 # # print out the html
 # puts html
 
-## Using the httparty method
-require "httparty"
+# # Using the httparty method
+# require "httparty"
 
-# Make a GET request using httparty gem
-response = HTTParty.get("https://en.wikipedia.org/wiki/Douglas_Adams")
+# # Make a GET request using httparty gem
+# response = HTTParty.get("https://en.wikipedia.org/wiki/Douglas_Adams")
 
-# Use the HTTParty::Response ojbect's body method to provide the entire HTML document
-html = response.body
-puts html
+# # Use the HTTParty::Response ojbect's body method to provide the entire HTML document
+# html = response.body
+# puts html
+
+# Making a get request using OpenURI (Open URIcomes included with standard ruby library)
+
+require "open-uri"
+
+html = URI.open("https://en.wikipedia.org/wiki/Douglas_Adams")
