@@ -28,3 +28,11 @@
 require "open-uri"
 
 html = URI.open("https://en.wikipedia.org/wiki/Douglas_Adams")
+
+# Parsing with Nokogiri
+require "nokogiri"
+# Returns a Nokogiri::HTML::Document object aka the DOM of current document
+doc = Nokogiri::HTML(html)
+
+# Selects all the paragraph tag elements & fetches text content
+description = doc.css("p").text
