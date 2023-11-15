@@ -37,6 +37,7 @@
 # # Selects all the paragraph tag elements & fetches text content
 # description = doc.css("p").text
 
+# Scraping Data & Exporting to CSV
 require "nokogiri"
 require "csv"
 require "open-uri"
