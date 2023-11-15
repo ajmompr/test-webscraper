@@ -23,16 +23,35 @@
 # html = response.body
 # puts html
 
-# Making a get request using OpenURI (Open URIcomes included with standard ruby library)
+# # Making a get request using OpenURI (Open URIcomes included with standard ruby library)
 
+# require "open-uri"
+
+# html = URI.open("https://en.wikipedia.org/wiki/Douglas_Adams")
+
+# # Parsing with Nokogiri
+# require "nokogiri"
+# # Returns a Nokogiri::HTML::Document object aka the DOM of current document
+# doc = Nokogiri::HTML(html)
+
+# # Selects all the paragraph tag elements & fetches text content
+# description = doc.css("p").text
+
+require "nokogiri"
+require "csv"
 require "open-uri"
 
+# Load the content of URL
 html = URI.open("https://en.wikipedia.org/wiki/Douglas_Adams")
-
-# Parsing with Nokogiri
-require "nokogiri"
-# Returns a Nokogiri::HTML::Document object aka the DOM of current document
+# Provide DOM content to nokogiri
 doc = Nokogiri::HTML(html)
-
-# Selects all the paragraph tag elements & fetches text content
-description = doc.css("p").text
+# Parse use .css method 
+description = doc.css("p").text.split("\n").find{|e| e.length > 0}
+picture = doc.css("td a img").find{|picture| picture.attributes["alt"].value.include?("Douglas adams portrait cropped.jpg")}.attributes["src"].value
+# add data to the data array
+data_arr = []
+data_arr.push(description, picture)
+# use CSV.open to writeh data to a csv file
+CSV.open('data.csv', "w") do |csv|
+  csv << data_arr
+end
